@@ -1,0 +1,29 @@
+﻿Ryan Stephens
+C# Final Project
+Machine Learning Sentiment Analysis Interface
+
+Note for Demo:
+Some elements of the application were not properly displayed during screen recording, such as the file selection system and any popups, but you can see them as you run through the project yourself. 
+
+Intro:
+This project offers the ability to analyze a custom library that can be premade or made within the application itself whose purpose is to read a segment of text, and determine if that text has a negative or positive sentiment (1 is positive, 0 is negative).  There is a file selection system built into the file menu at the top left.  In terms of testing, you can run a prediction algorithm on a segment of text that you can type out yourself to let the algorithm predict what the sentiment of that text is using the current project.  You can also run a scan on the project itself to determine its efficiency.
+
+
+File Selection:
+        You can use the file menu to open an existing file (yelp_labelled.txt is a good example of a working project that you can use, while fail-test.txt is a good example of a bad text file).  You can also edit text and save it within the given text box.  Creating a new file by selecting New will empty the current project after saving it.  There are measures built in to help you save changes like an autosave before tests are run or a box asking if you want to save changes before opening a new file.  It is best to store projects in the bin/debug/data directory.  You will be taken to this directory automatically as you open or save a new project.  Brief information is held within the about tab at the very top.  This is a more dense set of information.  
+
+
+Prediction:
+        After you’ve opened a project, you can enter a sentence into the prediction text box and press predict.  This will run the sentence against the machine learning model to predict if that sentence has a positive or negative sentiment (meaning is this a favorable or unfavorable opinion).  There will be a short pause and then the analysis will be displayed in the box at the bottom right.  
+
+
+Maturation Testing:
+        This project implements a feature where when a prediction is run, if the algorithm predicts correctly, that prediction is actually saved to the project to mature the model and make it smarter.  If the prediction is incorrect, it will still be added but with the sentiment portion of the data reversed.  You, the user, will be prompted and asked if the prediction was correct after you run the predict function by pressing the button.  
+
+
+General Analysis:
+        After selecting a project, you may press the Analyze Project button to run a scan of your machine learning model to determine its efficiency.  This will display characteristics like the accuracy and the F1 score.  
+
+
+Robustness:
+        If your project is in an incorrect format, the application will be able to tell.  Data in the library should be entered as “Sentence (0 or 1)”, for Example - This restaurant gave me an existential crisis. 0.  A working example is the yelp_labelled.txt file.  There is also various error checking to make sure you’ve entered in fields correctly before running tests, like if you were to press predict without entering any prediction text in the text box, it would tell you.

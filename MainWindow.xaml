@@ -1,0 +1,109 @@
+﻿<Window x:Class="IntegrationML.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IntegrationML"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1000">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Click="OpenHandler"></MenuItem>
+                <MenuItem Header="New" Click="NewHandler"></MenuItem>
+                <MenuItem Name="SaveButton" Header="Save" Click="SaveHandler"></MenuItem>
+                <MenuItem Header="Save As" Click="SaveAsHandler"></MenuItem>
+                <MenuItem Header="Exit" Click="MenuItem_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About" Click="About"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Popup x:Name="AboutWindow">
+            <DockPanel>
+                <ScrollViewer>
+                <TextBlock  DockPanel.Dock="Top" Height="100" Width="400" Background="White" TextWrapping ="WrapWithOverflow">This application was developed by Ryan Stephens for a school project.
+        Open a file using the file menu, or feel free to create your own and save as you please.  Use predict to see how your machine learning will read the sentiment of a phrase or sentence, or analyze your library to get an estimate of its efficiency.
+                
+                Be careful when creating your own text as it needs to be formatted correctly, see description.txt for more info.  
+                </TextBlock>
+                </ScrollViewer>
+                <Button DockPanel.Dock="Bottom" Click="ClosePopup">Close</Button>
+            </DockPanel>
+        </Popup>
+        <Popup x:Name="NewSaveAsk">
+
+            <Grid Height="100" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height='1*'></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="1">
+                    <Button DockPanel.Dock="Left" Width="150" Click="NewSaveAskSave">Yes</Button>
+                    <Button DockPanel.Dock="Right" Width="150" Click="NewSaveAskNoSave">No</Button>
+                </DockPanel>
+                <TextBlock>Would you like to save your changes to this file?</TextBlock>
+
+
+            </Grid>
+        </Popup>
+        <Popup x:Name="OpenSaveAsk">
+
+            <Grid Height="100" Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height='1*'></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="1">
+                    <Button DockPanel.Dock="Left" Width="150" Click="OpenSaveAskSave">Yes</Button>
+                    <Button DockPanel.Dock="Right" Width="150" Click="OpenSaveAskNoSave">No</Button>
+                </DockPanel>
+                <TextBlock>Would you like to save your changes to this file?</TextBlock>
+
+
+            </Grid>
+        </Popup>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height='1*'></RowDefinition>
+                <RowDefinition Height="15*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="ProjectNameLabel" Grid.Row="0">No current project</Label>
+            <Label Grid.Column="1" Grid.Row="0">Test Data</Label>
+            <TextBox Name="Text" Grid.Row="1" TextChanged="textChangedEventHandler" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"></TextBox>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height='1*'></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height='4*'></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label HorizontalAlignment="Left">Enter prediction text below</Label>
+                
+                <Border Grid.Row="1" BorderThickness="1" BorderBrush="Black">
+                    <TextBox Name="predictionText" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto"></TextBox>
+                </Border>
+                
+                
+                <DockPanel Grid.Row="3">
+                    <Button DockPanel.Dock="Top" Height="40" Width="120" Margin="10" Click="Analyze">Analyze Project</Button>
+                    <TextBlock Name="AnalysisBlock" DockPanel.Dock="Bottom" TextWrapping="Wrap"></TextBlock>
+                </DockPanel>
+                <DockPanel Grid.Row="2">
+                    <Button Margin="25" Name="predictButton" Width="80" HorizontalAlignment="Center" Click="predict">Predict</Button>
+                    <Label  x:Name="correctLabel" Visibility="Hidden" DockPanel.Dock="Top" HorizontalAlignment="Center">Was this prediction correct?</Label>
+                    <Button Visibility="Hidden" Click="addPrediction" Name="yesButton" DockPanel.Dock="Left" Width="75" Margin="10">Yes</Button>
+                    <Button Visibility="Hidden" Click="addReverse" Name="noButton" DockPanel.Dock="Right" Width="75" Margin="10">No</Button>
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>
+
+
+
